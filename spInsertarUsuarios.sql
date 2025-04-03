@@ -1,11 +1,11 @@
 
-
+use dbFinanzasG;
+go
 
 --Procedimiento para Insercion de Usuarios
 CREATE PROCEDURE spInsertarUsuarios(
-	@usuario VARCHAR (8),
+	@contrasena VARCHAR (500),
 	@nom_usuario VARCHAR (15),
-	@contrasena VARCHAR (12),
 	@ap1_usuario VARCHAR (15),
 	@ap2_usuario VARCHAR (15),
 	@correoElectronico VARCHAR (320),
@@ -16,8 +16,8 @@ AS
 BEGIN
 	if(not exists(select * from tblUsuarios where correoElectronico=@correoElectronico))
 	begin 
-		INSERT INTO tblUsuarios(usuario, nom_usuario,contrasena, ap1_usuario, ap2_usuario, correoElectronico)
-		VALUES (@usuario, @nom_usuario,@contrasena, @ap1_usuario, @ap2_usuario,@correoElectronico);
+		INSERT INTO tblUsuarios(contrasena, nom_usuario, ap1_usuario, ap2_usuario, correoElectronico)
+		VALUES (@contrasena,@nom_usuario, @ap1_usuario, @ap2_usuario,@correoElectronico);
 		SET @registrado=1
 		SET @mensaje= 'Usuario Registrado con Exito'
 	END
