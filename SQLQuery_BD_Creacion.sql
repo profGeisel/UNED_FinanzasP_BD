@@ -7,7 +7,8 @@ CREATE TABLE tblTipoMovimiento (id_tMovimiento INT PRIMARY KEY IDENTITY (1,1) ,
 tMovimiento VARCHAR(8) NOT NULL)
 
 CREATE TABLE tblPresupuesto (id_presupuesto INT  PRIMARY KEY IDENTITY (1,1),
-montoPropuesto DECIMAL (10,2) NOT NULL )
+montoPropuesto DECIMAL (10,2) NOT NULL,id_categoria int NOT NULL,
+constraint fk_Catpre foreign key(id_categoria) references tblPresupuesto(id_categoria))
 
 CREATE TABLE tblProveedores (id_proveedor int PRIMARY KEY IDENTITY (1,1) , 
 proveedor VARCHAR (25) NOT NULL);
@@ -35,10 +36,9 @@ constraint fk_proUsu foreign key(id_usuario) references tblUsuarios(id_usuario))
 
 CREATE TABLE tblCategorias (id_Categoria INT PRIMARY KEY IDENTITY (1,1)  NOT NULL, 
 nomCategoria VARCHAR(25) NOT NULL, 
-id_tMovimiento INT NOT NULL, 
-id_presupuesto INT NOT NULL
-constraint fk_tMovCat foreign key(id_tMovimiento) references tblTipoMovimiento(id_tMovimiento),
-constraint fk_preCat foreign key(id_presupuesto) references tblPresupuesto(id_presupuesto))
+id_tMovimiento INT NOT NULL
+constraint fk_tMovCat foreign key(id_tMovimiento) references tblTipoMovimiento(id_tMovimiento))
+
 
 CREATE TABLE tlbRegistro (id_registro INT PRIMARY KEY IDENTITY (1,1)  , 
 fecha DATE NOT NULL, 
